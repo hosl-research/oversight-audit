@@ -168,6 +168,9 @@ High-capability models sharpen this, because fluent, confident output suppresses
 surface anomalies reviewers use to allocate attention. This repo is the practitioner
 tool that follows from that argument.
 
+Built by the [Human Oversight Systems Lab (HOSL)](https://github.com/hosl-research),
+which studies how human oversight of AI degrades under load.
+
 ## License
 
 MIT. See `LICENSE`.

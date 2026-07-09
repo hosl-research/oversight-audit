@@ -10,7 +10,12 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "Brian Moriarty" }]
+maintainers = [{ name = "Human Oversight Systems Lab" }]
 keywords = ["ai", "oversight", "audit", "human-in-the-loop", "governance", "review"]
+
+[project.urls]
+Homepage = "https://github.com/hosl-research/oversight-audit"
+Source = "https://github.com/hosl-research/oversight-audit"
 
 [project.scripts]
 oversight-audit = "oversight_audit.__main__:main"

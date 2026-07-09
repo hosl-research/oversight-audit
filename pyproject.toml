@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oversight-audit"
+version = "0.1.0"
+description = "Does your AI-review logging record that review happened, or whether it worked?"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Brian Moriarty" }]
+keywords = ["ai", "oversight", "audit", "human-in-the-loop", "governance", "review"]
+
+[project.scripts]
+oversight-audit = "oversight_audit.__main__:main"
+
+[tool.setuptools]
+packages = ["oversight_audit"]

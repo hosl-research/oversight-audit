@@ -1,0 +1,4 @@
+{
+  "name": "typical AI-review audit trail",
+  "fields": ["reviewer_id", "item_id", "decision", "decision_timestamp", "approver"]
+}

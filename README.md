@@ -2,6 +2,8 @@
 
 **Does your AI-review logging record that a review happened, or whether it worked?**
 
+![oversight-audit demo: on a standard audit trail, engaged and procedural reviewers separate at chance (0.62); on function-level signals they separate cleanly (0.95)](docs/demo.gif)
+
 Every AI-assisted review workflow produces a record: the item was triaged, the
 output reviewed, the disposition approved and logged. Auditors check that record,
 compliance trusts it, retrospectives lean on it. But a reviewer who examined an
@@ -29,7 +31,7 @@ Zero dependencies. Python 3.9+. Clone and run.
 ```
 git clone https://github.com/<you>/oversight-audit.git
 cd oversight-audit
-python -m oversight_audit demo
+python3 -m oversight_audit demo
 ```
 
 ```
@@ -69,7 +71,7 @@ Describe the fields your review log captures in a small JSON file:
 ```
 
 ```
-python -m oversight_audit check examples/typical_audit_schema.json
+python3 -m oversight_audit check examples/typical_audit_schema.json
 ```
 
 ```
@@ -140,7 +142,7 @@ field, how well it separates the two groups (AUC via the Mann-Whitney statistic)
 The contrast between the standard group and the function group is the point.
 
 ```
-python -m oversight_audit generate --out mylog.json   # inspect the synthetic data
+python3 -m oversight_audit generate --out mylog.json   # inspect the synthetic data
 ```
 
 ## Install

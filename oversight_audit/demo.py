@@ -21,19 +21,23 @@ def _bar(sep: float, width: int = 24) -> str:
     return "#" * filled + "-" * (width - filled)
 
 
+_RULE = "=" * 76
+_THIN = "-" * 76
+
+
 def format_demo(report: dict) -> str:
     lines = []
-    lines.append("oversight-audit :: the identity demonstration")
-    lines.append("=" * 60)
+    lines.append("oversight-audit :: can your record tell careful review from rubber-stamping?")
+    lines.append(_RULE)
     lines.append(
         f"{report['n_reviewers']} reviewers "
-        f"({report['n_engaged']} engaged, {report['n_procedural']} procedural), "
-        "known ground truth."
+        f"({report['n_engaged']} engaged, {report['n_procedural']} procedural). "
+        "Same task. Same decision mix."
     )
+    lines.append("Ground truth is known here. In a real audit it never is.")
     lines.append("")
-    lines.append("How well does each field separate engaged from procedural?")
-    lines.append("  0.50 = chance (the field carries no information)")
-    lines.append("  1.00 = perfect")
+    lines.append("Score: how well each field separates engaged from procedural reviewers.")
+    lines.append("  0.50 = chance (the field tells you nothing)      1.00 = perfect")
     lines.append("")
 
     def section(title: str, group: str) -> None:
@@ -46,22 +50,20 @@ def format_demo(report: dict) -> str:
             )
         lines.append("")
 
-    section("In a standard audit trail (decision, approval, timestamps):", "STANDARD")
-    section("Requires added instrumentation (not in a standard trail):", "FUNCTION")
+    section("WHAT A STANDARD AUDIT TRAIL KEEPS  (decision, approval, timestamps)", "STANDARD")
+    section("WHAT IT DOES NOT KEEP  (requires added instrumentation)", "FUNCTION")
 
     bs, bf = report["best_standard"], report["best_function"]
-    lines.append("-" * 60)
+    lines.append(_THIN)
     lines.append(
-        f"Best a standard trail can do: {bs:.2f}. "
-        f"Best with function-level signals: {bf:.2f}."
+        f"Best your audit trail can do: {bs:.2f}.    "
+        f"Best with the fields it drops: {bf:.2f}."
     )
     lines.append("")
     lines.append(
-        "The two populations did opposite things. On the record you keep, they are "
-        "nearly indistinguishable. The separation lives entirely in fields a standard "
-        "audit trail does not keep. That is the gap: your record certifies that review "
-        "happened, not that it worked."
+        "Two populations that did opposite things. Nearly identical on the record you keep."
     )
+    lines.append("Your record certifies that review happened, not that it worked.")
     return "\n".join(lines)
 
 

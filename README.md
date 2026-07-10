@@ -2,7 +2,11 @@
 
 **Does your AI-review logging record that a review happened, or whether it worked?**
 
-![oversight-audit demo: on a standard audit trail, engaged and procedural reviewers separate at chance (0.62); on function-level signals they separate cleanly (0.95)](docs/demo.gif)
+[![oversight-audit demo: on a standard audit trail, engaged and procedural reviewers separate at chance (0.62); on function-level signals they separate cleanly (0.95)](docs/demo.gif)](docs/demo-transcript.md)
+
+*Same decisions. Same paper trail. Opposite behavior. The fields a standard audit
+trail keeps (top) separate careful reviewers from rubber-stampers at chance. The
+fields it does not keep (bottom) separate them cleanly.*
 
 Every AI-assisted review workflow produces a record: the item was triaged, the
 output reviewed, the disposition approved and logged. Auditors check that record,
@@ -35,32 +39,41 @@ python3 -m oversight_audit demo
 ```
 
 ```
-oversight-audit :: the identity demonstration
-============================================================
-80 reviewers (40 engaged, 40 procedural), known ground truth.
+oversight-audit :: can your record tell careful review from rubber-stamping?
+============================================================================
+80 reviewers (40 engaged, 40 procedural). Same task. Same decision mix.
+Ground truth is known here. In a real audit it never is.
 
-How well does each field separate engaged from procedural?
-  0.50 = chance (the field carries no information)
-  1.00 = perfect
+Score: how well each field separates engaged from procedural reviewers.
+  0.50 = chance (the field tells you nothing)      1.00 = perfect
 
-In a standard audit trail (decision, approval, timestamps):
+WHAT A STANDARD AUDIT TRAIL KEEPS  (decision, approval, timestamps)
   0.62  |######------------------|  time between logged decisions (throughput)
   0.53  |##----------------------|  approval rate
   0.51  |#-----------------------|  revise rate
 
-Requires added instrumentation (not in a standard trail):
+WHAT IT DOES NOT KEEP  (requires added instrumentation)
   0.95  |######################--|  correction specificity
   0.94  |#####################---|  dwell time on the item
   0.92  |####################----|  evidence opened per item
   0.83  |################--------|  seeded-error catch rate
   0.82  |################--------|  accepted-unmodified rate
 
-Best a standard trail can do: 0.62. Best with function-level signals: 0.95.
+----------------------------------------------------------------------------
+Best your audit trail can do: 0.62.    Best with the fields it drops: 0.95.
+
+Two populations that did opposite things. Nearly identical on the record you keep.
+Your record certifies that review happened, not that it worked.
 ```
 
 The two populations did opposite things. On the record you keep, they are nearly
 indistinguishable. The separation lives entirely in fields a standard audit trail
 does not keep.
+
+Note the throughput line. Timestamps are the one hint a standard trail seems to
+offer, and it separates at 0.62, barely above chance, because the gap between two
+logged decisions is dominated by queue wait, context switching, and batching, not
+by how long anyone actually reviewed.
 
 ## Check your own logging
 

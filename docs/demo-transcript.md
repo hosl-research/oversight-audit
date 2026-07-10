@@ -13,28 +13,31 @@ field: how well does it separate an engaged reviewer from a procedural one?
 
 ```console
 $ python3 -m oversight_audit demo
-oversight-audit :: the identity demonstration
-============================================================
-80 reviewers (40 engaged, 40 procedural), known ground truth.
+oversight-audit :: can your record tell careful review from rubber-stamping?
+============================================================================
+80 reviewers (40 engaged, 40 procedural). Same task. Same decision mix.
+Ground truth is known here. In a real audit it never is.
 
-How well does each field separate engaged from procedural?
-  0.50 = chance (the field carries no information)
-  1.00 = perfect
+Score: how well each field separates engaged from procedural reviewers.
+  0.50 = chance (the field tells you nothing)      1.00 = perfect
 
-In a standard audit trail (decision, approval, timestamps):
+WHAT A STANDARD AUDIT TRAIL KEEPS  (decision, approval, timestamps)
   0.62  |######------------------|  time between logged decisions (throughput)
   0.53  |##----------------------|  approval rate
   0.51  |#-----------------------|  revise rate
 
-Requires added instrumentation (not in a standard trail):
+WHAT IT DOES NOT KEEP  (requires added instrumentation)
   0.95  |######################--|  correction specificity
   0.94  |#####################---|  dwell time on the item
   0.92  |####################----|  evidence opened per item
   0.83  |################--------|  seeded-error catch rate
   0.82  |################--------|  accepted-unmodified rate
 
-------------------------------------------------------------
-Best a standard trail can do: 0.62. Best with function-level signals: 0.95.
+----------------------------------------------------------------------------
+Best your audit trail can do: 0.62.    Best with the fields it drops: 0.95.
+
+Two populations that did opposite things. Nearly identical on the record you keep.
+Your record certifies that review happened, not that it worked.
 ```
 
 The two populations did opposite things. On the record you keep, they are nearly

@@ -186,6 +186,17 @@ time that could be review. Two honest asymmetries to keep in mind:
   true dwell weight there is zero by construction. That is the bound working as
   designed, not failing.
 
+Two example exports ship with the repo, one for each verdict:
+
+```
+python3 -m oversight_audit estimate examples/queue_export.json         # batched queue: premise holds
+python3 -m oversight_audit estimate examples/deliberative_export.json  # session-structured: no exoneration
+```
+
+(Full output for both, and for `sensitivity`, is in
+[docs/estimate-transcript.md](docs/estimate-transcript.md) and
+[docs/sensitivity-transcript.md](docs/sensitivity-transcript.md).)
+
 ## Is the demo tuned? (`sensitivity`)
 
 A constructive proof at one configuration invites the objection that the

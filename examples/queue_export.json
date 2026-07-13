@@ -1,0 +1,722 @@
+[
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000000.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000002.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000003.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000005.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000007.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000009.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000011.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000013.6,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000015.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000017.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000018.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750000021.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012648.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012651.0,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012652.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012654.4,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012657.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012659.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012661.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012663.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012665.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012667.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012668.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750012669.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024440.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024441.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024444.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024445.3,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024446.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024448.7,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024450.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024452.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024454.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024457.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024458.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-01",
+  "decision_timestamp": 1750024461.4,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000137.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000138.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000139.8,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000142.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000145.7,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000147.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000149.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000150.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000152.6,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000153.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000156.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750000157.4,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008255.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008258.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008260.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008262.0,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008263.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008266.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008268.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008269.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008271.4,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008273.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008274.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750008275.1,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021688.5,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021689.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021690.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021691.5,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021693.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021694.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021696.9,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021698.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021701.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021702.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021704.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-02",
+  "decision_timestamp": 1750021706.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000274.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000276.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000277.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000280.2,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000283.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000285.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000287.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000288.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000290.2,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000292.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000294.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750000297.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008450.7,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008452.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008454.0,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008456.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008456.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008459.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008459.9,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008461.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008462.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008464.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008465.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750008467.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021064.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021066.7,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021068.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021070.2,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021072.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021074.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021077.3,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021079.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021080.1,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021081.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021083.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-03",
+  "decision_timestamp": 1750021085.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000411.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000413.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000414.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000417.0,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000418.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000420.3,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000422.6,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000425.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000427.8,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000430.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000432.9,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750000434.7,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010110.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010111.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010113.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010115.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010116.6,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010118.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010121.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010124.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010125.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010127.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010130.0,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750010131.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024448.2,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024450.5,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024453.2,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024454.0,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024456.8,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024459.2,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024460.9,
+  "decision": "revise"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024462.8,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024464.4,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024465.7,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024468.1,
+  "decision": "accept"
+ },
+ {
+  "reviewer_id": "analyst-04",
+  "decision_timestamp": 1750024470.9,
+  "decision": "accept"
+ }
+]

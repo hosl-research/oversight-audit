@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this tool or its identifiability argument, please cite it as below."
+type: software
+title: "oversight-audit: does your AI-review logging record process, or function?"
+authors:
+  - family-names: Moriarty
+    given-names: Brian
+    affiliation: "Human Oversight Systems Lab, Stevens Institute of Technology"
+version: 0.2.0
+date-released: 2026-07-13
+license: MIT
+repository-code: "https://github.com/hosl-research/oversight-audit"
+abstract: >-
+  A zero-dependency demonstration and self-audit tool for a claim about AI
+  oversight observability: reviewer engagement is not identifiable from a
+  standard audit trail in the regime where procedural and engaged review reach
+  the same decisions. Includes a constructive demo on synthetic data with known
+  ground truth, a schema self-audit (check), a sensitivity sweep with bootstrap
+  confidence intervals, and an estimate command that bounds how much engagement
+  a real log's timestamps could carry.
+keywords:
+  - AI oversight
+  - human-in-the-loop
+  - audit trails
+  - automation complacency
+  - identifiability

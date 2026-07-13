@@ -178,6 +178,22 @@ def test_estimate_rejects_unusable_logs():
         raise AssertionError("single-event-per-reviewer log should raise")
 
 
+def test_estimate_example_exports_show_both_verdicts():
+    # The shipped examples must keep demonstrating one exonerated log and one
+    # that cannot be exonerated; they are cited in the README.
+    import json
+    from pathlib import Path
+
+    examples = Path(__file__).resolve().parent.parent / "examples"
+    queue = estimate_log(json.loads((examples / "queue_export.json").read_text()))
+    assert queue["premise_holds"] is True
+    assert queue["dwell_share_upper_bound"] < 0.10
+
+    delib = estimate_log(json.loads((examples / "deliberative_export.json").read_text()))
+    assert delib["premise_holds"] is False
+    assert delib["dwell_share_upper_bound"] > 0.75
+
+
 def test_sensitivity_report_structure_and_direction():
     res = run_sensitivity(seed=20260709, bootstrap=60)
     assert set(res) >= {"decision_disagreement", "timestamp_dwell_weight"}

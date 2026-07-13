@@ -58,12 +58,24 @@ class ReviewEvent:
         return asdict(self)
 
 
-def _decision(rng: random.Random) -> str:
-    # Same distribution for both populations: approval-heavy, as real queues are.
+def _decision(rng: random.Random, latent: float = 0.5, disagreement: float = 0.0) -> str:
+    """
+    Draw a decision. At disagreement=0 the distribution is identical for every
+    reviewer (approval-heavy, as real queues are), so the decision carries nothing
+    about engagement: the agreement regime. As disagreement rises, engaged
+    reviewers (high latent) accept less and revise or reject more, procedural
+    reviewers (low latent) accept more, so the decision begins to reflect
+    engagement and a standard trail starts to see the difference. One random draw
+    either way, so the draw sequence is unchanged at disagreement=0.
+    """
     r = rng.random()
-    if r < 0.70:
+    accept_thresh = 0.70
+    if disagreement > 0.0:
+        accept_thresh = min(0.95, max(0.45, 0.70 + disagreement * (0.5 - latent)))
+    revise_thresh = min(1.0, accept_thresh + 0.20)
+    if r < accept_thresh:
         return "accept"
-    if r < 0.90:
+    if r < revise_thresh:
         return "revise"
     return "reject"
 
@@ -74,10 +86,23 @@ def generate_log(
     engaged_fraction: float = 0.5,
     seeded_error_rate: float = 0.30,
     seed: int = 20260709,
+    decision_disagreement: float = 0.0,
+    timestamp_dwell_weight: float = 0.0,
 ) -> list[dict]:
     """
     Return a list of review-event dicts across `n_reviewers` reviewers, half of
     them engaged (rounded), each processing `items_per_reviewer` items.
+
+    Two parameters exist for the sensitivity analysis and default to the values
+    that reproduce the demo exactly:
+      - decision_disagreement (0..~0.6): how far engaged and procedural reviewers
+        diverge in the decisions they log. 0 is the agreement regime, where the
+        decision carries nothing about engagement.
+      - timestamp_dwell_weight (0..1): how much of the gap between logged decisions
+        reflects real review time rather than queue wait and batching. 0 leaves the
+        timestamp exogenously dominated, as a standard trail's timestamps are.
+    At the defaults the draw sequence and output are identical to the original
+    generator.
     """
     rng = random.Random(seed)
     n_engaged = round(n_reviewers * engaged_fraction)
@@ -101,7 +126,7 @@ def generate_log(
             has_error = rng.random() < seeded_error_rate
             difficulty = rng.random()  # affects dwell for everyone
 
-            decision = _decision(rng)
+            decision = _decision(rng, latent, decision_disagreement)
             approved = decision == "accept"
 
             # Function-level fields track the latent engagement level (with noise).
@@ -123,7 +148,15 @@ def generate_log(
             # field you only have if you instrument for it.)
             exogenous_gap = rng.gauss(150, 120)
             engagement_bleed = rng.gauss(6 if engaged else 0, 10)
-            clock += max(5.0, exogenous_gap + engagement_bleed)
+            base_gap = max(5.0, exogenous_gap + engagement_bleed)
+            # At timestamp_dwell_weight=0 the logged gap is the exogenous gap, as a
+            # standard trail's is. Raising it blends real dwell into the gap, which
+            # is how the sensitivity axis lets timestamps carry engagement.
+            if timestamp_dwell_weight > 0.0:
+                gap = (1.0 - timestamp_dwell_weight) * base_gap + timestamp_dwell_weight * time_on_item_s
+            else:
+                gap = base_gap
+            clock += max(5.0, gap)
 
             events.append(
                 ReviewEvent(

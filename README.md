@@ -2,11 +2,11 @@
 
 **Does your AI-review logging record that a review happened, or whether it worked?**
 
-[![oversight-audit demo: on a standard audit trail, engaged and procedural reviewers separate at chance (0.62); on function-level signals they separate cleanly (0.95)](docs/demo.gif)](docs/demo-transcript.md)
+[![oversight-audit demo: on a standard audit trail, engaged and procedural reviewers separate only weakly (0.62, where 0.50 is chance); on function-level signals they separate cleanly (0.95)](docs/demo.gif)](docs/demo-transcript.md)
 
 *Same decisions. Same paper trail. Opposite behavior. The fields a standard audit
-trail keeps (top) separate careful reviewers from rubber-stampers at chance. The
-fields it does not keep (bottom) separate them cleanly.*
+trail keeps (top) separate careful reviewers from rubber-stampers barely better
+than chance. The fields it does not keep (bottom) separate them cleanly.*
 
 Every AI-assisted review workflow produces a record: the item was triaged, the
 output reviewed, the disposition approved and logged. Auditors check that record,
@@ -15,16 +15,19 @@ AI-generated finding closely and a reviewer who cleared it without looking produ
 the *same* record: a timestamp, an approval, a complete paper trail. The record
 cannot place a reviewer anywhere on that spectrum.
 
-`oversight-audit` does two honest things about that gap. It does **not** pretend to
-recover engagement from a record that cannot carry it.
+`oversight-audit` does three honest things about that gap. It does **not** pretend
+to recover engagement from a record that cannot carry it.
 
 1. **`demo`** shows the gap on synthetic data with known ground truth: the fields a
-   standard audit trail keeps separate engaged from procedural reviewers at close to
-   chance, while function-level signals a standard trail does not keep separate them
-   clearly.
+   standard audit trail keeps separate engaged from procedural reviewers only weakly
+   (0.62, where 0.50 is chance), while function-level signals a standard trail does
+   not keep separate them clearly (0.95).
 2. **`check`** audits *your* review-log schema (the fields you actually capture) and
    reports which function-level signals you can and cannot compute from it. That is:
    what would change in your record if a reviewer stopped looking?
+3. **`estimate`** reads a real timestamped log and bounds how much engagement your
+   timestamps *could* carry, so the argument's one contestable assumption gets
+   tested on your own trail instead of taken on faith.
 
 Zero dependencies. Python 3.9+. Clone and run.
 
@@ -73,7 +76,43 @@ does not keep.
 Note the throughput line. Timestamps are the one hint a standard trail seems to
 offer, and it separates at 0.62, barely above chance, because the gap between two
 logged decisions is dominated by queue wait, context switching, and batching, not
-by how long anyone actually reviewed.
+by how long anyone actually reviewed. The residue above 0.50 is deliberate: the
+generator lets a faint trace of engagement bleed into the logged gaps, because
+real trails are not perfectly silent either. The claim is not that a standard
+trail carries *zero* signal. It is that the signal is too weak to act on, and it
+stays that way unless a large share of the logged gap is real review time — which
+is exactly what `sensitivity` quantifies and `estimate` bounds for your own log.
+
+## See it one record at a time
+
+The aggregate view proves the gap statistically. This shows it the way a person
+feels it: six individual approvals as an audit trail records them, then the same
+six with the ground truth the trail never had.
+
+```
+python3 -m oversight_audit reveal
+```
+
+```
+AS THE AUDIT TRAIL RECORDS THEM
+  #  reviewer   decision  approved  logged at
+  1  rev-031    accept    yes       00:28:19
+  2  rev-017    accept    yes       20:58:49
+  ...
+
+  Which three reviewers examined the item, and which three approved
+  without looking? Guess, then read on.
+..........................................................................
+THE TRUTH THE RECORD COULD NOT SHOW
+  #  reviewer   looked?         dwell   evidence  rationale
+  1  rev-031    engaged          174s   opened    specific
+  3  rev-075    rubber-stamped    38s   --        generic
+  ...
+```
+
+Try it before you scroll: you cannot pick the three who looked. That failure is
+the point. (These are clear cases chosen so the contrast reads; `demo` shows the
+full population, where engagement is a spectrum.)
 
 ## Check your own logging
 
@@ -110,6 +149,67 @@ Point it at a schema listing your own fields (`examples/instrumented_schema.json
 shows what a capable log looks like). Field-name aliases are recognized, so
 `timestamp`, `dwell_time`, `corrections`, and similar map onto the canonical names.
 
+`check` reads your schema, not your data, so it is a **necessary-condition test**.
+A missing field proves a signal is uncomputable from your log. A present field only
+makes it possible: a `dwell_time` column populated with garbage still passes.
+Crossing the threshold means your logging is *capable of asking* whether review
+functioned — the threshold is exactly one field that records reviewer behavior
+rather than the decision (`evidence_opened`, `time_on_item`, or
+`correction_specificity`) — not that it answers the question. And one field
+deserves a caveat: every schema has timestamps, and timestamps could in principle
+carry review time. `check` counts them as standard-trail fields because in typical
+queue systems the logged gap is dominated by everything except reviewing. If you
+think your timestamps are different, `estimate` will bound how much they could
+carry.
+
+## Test the timing assumption on your own log
+
+The argument's most contestable step is the premise that logged inter-decision
+gaps contain almost no review time. `estimate` tests it against a real log — any
+JSON list of events with a reviewer id and a decision timestamp:
+
+```
+python3 -m oversight_audit estimate mylog.json
+```
+
+It decomposes each reviewer's inter-decision gaps into bursts (too short to be
+review — batched logging), breaks (too long — the reviewer walked away), and
+working-range gaps, then reports an **upper bound** on the share of logged gap
+time that could be review. Two honest asymmetries to keep in mind:
+
+- The bound can **exonerate** timestamps but never convict them. A log whose gaps
+  are dominated by bursts and breaks provably cannot carry much engagement — the
+  premise holds and the non-identifiability argument applies with force. A log
+  with a high bound only *might* carry engagement; whether reviewers actually
+  spend the working gaps reviewing is unknowable without instrumenting dwell.
+- Run it on `generate`'s own output and the bound comes back high even though the
+  true dwell weight there is zero by construction. That is the bound working as
+  designed, not failing.
+
+## Is the demo tuned? (`sensitivity`)
+
+A constructive proof at one configuration invites the objection that the
+configuration was chosen to produce the result. `sensitivity` sweeps the two
+parameters that objection would target, with bootstrap confidence intervals:
+
+```
+python3 -m oversight_audit sensitivity --bootstrap 400
+```
+
+- **Decision disagreement** (0 → 0.6): standard-trail separability rises 0.62 →
+  0.92 as engaged and procedural decisions diverge. The trail only sees engagement
+  once the decisions themselves show the failure — the regime where no tool is
+  needed.
+- **Timestamp dwell weight** (0 → 1): standard-trail separability rises 0.62 →
+  0.94, and reaches 0.81 by a dwell weight of 0.25. This is the load-bearing
+  number: if even a quarter of the logged gap were real review time, timestamps
+  would start to carry engagement. The argument therefore rests on that share
+  being near zero — an empirical premise `estimate` lets you test on your own
+  log rather than accept on faith.
+
+At the baseline (0.00 on both axes, the demo's configuration): standard 0.62
+[95% CI 0.54–0.74], function 0.95 [0.90–0.99], seed 20260709, 400 resamples.
+
 ## What this does and does not claim
 
 - It does **not** read your review data, and it does **not** detect rubber-stamping
@@ -135,6 +235,15 @@ into existing workflows.
   outpaced by how much the system produces.
 - **Dependency accumulation.** Whether reliance on unmodified AI output is growing.
 
+A warning that belongs next to the agenda: once these signals are monitored, they
+become targets. Dwell can be inflated by leaving the item open. Evidence-opens can
+be clicked without reading. Rationale specificity can be padded with generated
+text. Any calibrated instrument built on these signals has to treat gaming
+resistance as a design criterion from the start — preferring signals that are
+costly to fake, and cross-checking signals against each other rather than trusting
+any one. A signal that is cheap to fake measures compliance with the metric, which
+is the same failure this tool exists to name.
+
 ## "But I can just look at who is fast"
 
 The one hint a standard trail seems to offer is throughput: the time between logged
@@ -142,7 +251,9 @@ decisions. The demo shows why it fails. That gap is dominated by queue wait,
 context switching, and batching, not by how long anyone actually reviewed, so it
 separates engaged from procedural reviewers only weakly (about 0.6 above), and it
 collapses further under load, exactly when oversight matters most. A timestamp
-records when a decision was logged, not how long review took.
+records when a decision was logged, not how long review took. If you suspect your
+own system's timestamps are better than that, don't argue — run
+`estimate` on your log and see what they could carry at most.
 
 ## How the demo works
 

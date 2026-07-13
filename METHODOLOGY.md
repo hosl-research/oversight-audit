@@ -137,8 +137,11 @@ clinical chart review, IRB and grant review, judicial and parole decisions — w
 reviewer opens one case, works it, and logs it, so the gap approximates dwell. For systems
 of that second kind the standard trail may genuinely carry engagement, the
 non-identifiability claim weakens, and this tool's argument should not be recruited to
-say otherwise. Readers should place their own system on that spectrum, and the `estimate`
-command exists to help: it decomposes a real log's inter-decision gaps into bursts,
+say otherwise. These domain names are priors about typical implementations, not verdicts:
+a particular hospital's review workflow may be batch-logged and a particular SOC may be
+session-structured, and what decides the question for any one system is the composition
+of its logged gaps, not its industry. Readers should place their own system on that
+spectrum, and the `estimate` command exists to adjudicate it: it decomposes a real log's inter-decision gaps into bursts,
 breaks, and working-range time and reports an upper bound on the dwell share. The bound
 is asymmetric by design — burst- and break-dominated gaps can prove the assumption holds,
 but a high bound cannot prove it fails, since only instrumented dwell can show whether

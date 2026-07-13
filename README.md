@@ -136,8 +136,10 @@ Function-level oversight signals:
         to compute: add one of {items_presented_count, item_presented_timestamp}
   [NO ] Is reliance on unmodified AI output growing?
         to compute: add accepted_unmodified
+  [NO ] Are seeded known-answer items being caught?
+        to compute: add item_is_golden
 
-Computable: 0 of 4.
+Computable: 0 of 5.
 
 Verdict:
   Your record cannot distinguish substantive review from procedural review.
@@ -148,6 +150,10 @@ Verdict:
 Point it at a schema listing your own fields (`examples/instrumented_schema.json`
 shows what a capable log looks like). Field-name aliases are recognized, so
 `timestamp`, `dwell_time`, `corrections`, and similar map onto the canonical names.
+If `check` says your logging falls short and you want to fix it,
+[docs/instrumented-log-format.md](docs/instrumented-log-format.md) specifies
+exactly what to emit — field semantics, minimal vs. full profiles, and the
+privacy line the signals are designed to respect.
 
 `check` reads your schema, not your data, so it is a **necessary-condition test**.
 A missing field proves a signal is uncomputable from your log. A present field only
@@ -234,7 +240,7 @@ At the baseline (0.00 on both axes, the demo's configuration): standard 0.62
 The signals here are a starting agenda for oversight you can verify, not a finished
 control set.
 
-## The three function-level signals
+## The four function-level signals
 
 Standard audit trails verify that a process was followed. These verify whether
 judgment happened inside it. None require monitoring individuals; all can be built
@@ -245,6 +251,12 @@ into existing workflows.
 - **Validation load relative to output volume.** Whether reviewer capacity is being
   outpaced by how much the system produces.
 - **Dependency accumulation.** Whether reliance on unmodified AI output is growing.
+- **Golden-task catch rate.** Whether seeded known-answer items are being caught.
+  Unlike the others, this instruments the item stream rather than the reviewer: mix
+  items with a known correct disposition into the queue, mark them in the log, and
+  the ordinary decision field becomes an engagement measure. It is also the
+  cheapest to add — one boolean column — and the demo already shows it working
+  (the seeded-error catch line, 0.83).
 
 A warning that belongs next to the agenda: once these signals are monitored, they
 become targets. Dwell can be inflated by leaving the item open. Evidence-opens can
@@ -252,8 +264,11 @@ be clicked without reading. Rationale specificity can be padded with generated
 text. Any calibrated instrument built on these signals has to treat gaming
 resistance as a design criterion from the start — preferring signals that are
 costly to fake, and cross-checking signals against each other rather than trusting
-any one. A signal that is cheap to fake measures compliance with the metric, which
-is the same failure this tool exists to name.
+any one. Golden tasks are the benchmark here: passing them requires doing the
+review, so their main gaming vector is not faking the signal but spotting the
+golden items and engaging only on those — which is why they must be
+indistinguishable from ordinary work. A signal that is cheap to fake measures
+compliance with the metric, which is the same failure this tool exists to name.
 
 ## "But I can just look at who is fast"
 
@@ -292,9 +307,11 @@ oversight-audit demo
 ## Contributing
 
 Useful directions: additional function-level signals with their field requirements;
-schema adapters for common review and ticketing systems; connectors that compute the
-signals over a real instrumented log (on data that carries the function-level fields,
-never a claim to recover them from a standard one). Open an issue or a pull request.
+schema adapters for common review and ticketing systems; emitters that produce the
+[instrumented log format](docs/instrumented-log-format.md) from real review tools;
+connectors that compute the signals over a real instrumented log (on data that
+carries the function-level fields, never a claim to recover them from a standard
+one). Open an issue or a pull request.
 
 ## Background
 

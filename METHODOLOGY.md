@@ -147,7 +147,7 @@ is asymmetric by design — burst- and break-dominated gaps can prove the assump
 but a high bound cannot prove it fails, since only instrumented dwell can show whether
 working-range gaps contain reviewing.
 
-## The three function-level signals and where they come from
+## The four function-level signals and where they come from
 
 The signals are not new constructs. They operationalize failure modes named in the
 human-automation literature, chosen because each can be computed from fields a review log can
@@ -170,6 +170,19 @@ carry without monitoring individuals.
   appropriate reliance on AI advice), measured as the share of output accepted without
   modification.
 
+- Golden-task catch rate: whether seeded known-answer items are being caught. Known-answer
+  probing is the established practice wherever engagement must be measured without trusting
+  self-report: attention checks in survey and experimental work (Oppenheimer and colleagues
+  on instructional manipulation checks), gold-standard items in crowdsourced annotation
+  (Snow and colleagues), and blind proficiency testing in laboratory quality assurance. It
+  differs from the other three in kind: it instruments the item stream, not the reviewer,
+  so it needs no behavioral capture at all -- only a marker for which items were golden,
+  read against the decision field every trail already keeps. It is correspondingly the
+  costliest signal to fake, since passing it requires performing the review; its own
+  failure mode is distinguishability, reviewers learning to spot the golden items and
+  engaging only on those. The demo's seeded-error catch line is this signal under its
+  synthetic name.
+
 These are a starting agenda for verifiable oversight. They are not a finished control set.
 
 ## When the signals become targets
@@ -183,10 +196,12 @@ has access to the same class of model that produced the item under review. This 
 reason to abandon the signals; decisions themselves are equally fakeable and we do not
 abandon decisions. It is a design constraint on the calibrated instrument this project
 points toward: prefer signals whose faking cost is high relative to the engagement they
-proxy (a specific correction that survives scrutiny is expensive to counterfeit; a click
-is not), read signals jointly rather than singly, since faking all of them consistently
-approaches the cost of just doing the review, and treat drift in the signals after
-instrumentation is announced as itself diagnostic. An oversight lab should expect its own
+proxy (a golden task passed is expensive to counterfeit; a click is not), read signals
+jointly rather than singly, since faking all of them consistently approaches the cost of
+just doing the review, and treat drift in the signals after instrumentation is announced
+as itself diagnostic. Golden tasks anchor the costly end of that spectrum, with the caveat
+that their gaming vector is detection rather than fabrication: they measure engagement
+only while they are indistinguishable from ordinary work. An oversight lab should expect its own
 instrument to induce the behavior it measures; designing for that is part of the
 methodology, not a footnote to it.
 
@@ -212,3 +227,8 @@ methodology, not a footnote to it.
   *Human Factors*, 52(3).
 - Schemmer, M., Kuehl, N., Benz, C., Bartos, A., & Satzger, G. (2023). Appropriate reliance
   on AI advice. *IUI 2023*.
+- Snow, R., O'Connor, B., Jurafsky, D., & Ng, A. Y. (2008). Cheap and fast — but is it good?
+  Evaluating non-expert annotations for natural language tasks. *EMNLP 2008*.
+- Oppenheimer, D. M., Meyvis, T., & Davidenko, N. (2009). Instructional manipulation checks:
+  Detecting satisficing to increase statistical power. *Journal of Experimental Social
+  Psychology*, 45(4).

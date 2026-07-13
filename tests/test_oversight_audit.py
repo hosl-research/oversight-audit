@@ -62,9 +62,22 @@ def test_schema_audit_instrumented_is_capable():
     result = audit_schema(
         ["reviewer_id", "item_id", "decision", "decision_timestamp",
          "evidence_opened", "time_on_item", "correction_count",
-         "correction_specificity", "accepted_unmodified", "items_presented_count"]
+         "correction_specificity", "accepted_unmodified", "items_presented_count",
+         "item_is_golden"]
     )
     assert result["computable_count"] == result["total_signals"]
+
+
+def test_schema_audit_golden_tasks_need_only_a_marker():
+    # Golden tasks instrument the item stream, not the reviewer: a marker plus
+    # the decision field every trail already has crosses the line.
+    result = audit_schema(["reviewer_id", "decision", "decision_timestamp", "item_is_golden"])
+    golden = next(s for s in result["signals"] if s["signal"] == "golden_task_catch_rate")
+    assert golden["computable"] is True
+    # and aliases work
+    result2 = audit_schema(["reviewer_id", "decision", "canary"])
+    golden2 = next(s for s in result2["signals"] if s["signal"] == "golden_task_catch_rate")
+    assert golden2["computable"] is True
 
 
 def test_reveal_records_are_balanced_and_clear():

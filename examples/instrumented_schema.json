@@ -2,5 +2,6 @@
   "name": "function-instrumented review log",
   "fields": ["reviewer_id", "item_id", "decision", "decision_timestamp",
              "evidence_opened", "time_on_item", "correction_count",
-             "correction_specificity", "accepted_unmodified", "items_presented_count"]
+             "correction_specificity", "accepted_unmodified", "items_presented_count",
+             "item_is_golden"]
 }

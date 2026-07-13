@@ -31,6 +31,11 @@ _ALIASES = {
     "items_shown": "items_presented_count",
     "queue_volume": "items_presented_count",
     "presented_at": "item_presented_timestamp",
+    "is_golden": "item_is_golden",
+    "golden": "item_is_golden",
+    "canary": "item_is_golden",
+    "seeded_item": "item_is_golden",
+    "known_answer_item": "item_is_golden",
 }
 
 
@@ -80,6 +85,18 @@ SIGNALS = {
         "why": (
             "Growing accept-without-change over time is accumulating dependence on "
             "unverified output. It needs an unmodified-accept marker ordered by time."
+        ),
+    },
+    "golden_task_catch_rate": {
+        "question": "Are seeded known-answer items being caught?",
+        "requires_all": ["item_is_golden", "decision"],
+        "requires_any": [],
+        "why": (
+            "Seeding items with a known correct disposition and marking them in the "
+            "log turns the ordinary decision field into an engagement measure: the "
+            "catch rate on golden items. It is the only signal here that instruments "
+            "the item stream instead of the reviewer, and the costliest to fake -- "
+            "passing it requires doing the review."
         ),
     },
 }

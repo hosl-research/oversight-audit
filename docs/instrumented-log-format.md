@@ -24,7 +24,7 @@ Include a `format_version` field on each event or at the top of the file:
 | `reviewer_id` | string | Stable pseudonymous identifier. Pseudonymize before export; nothing here needs a name. |
 | `item_id` | string | The item reviewed. |
 | `decision` | string | Your disposition vocabulary (`accept` / `revise` / `reject` or equivalent). |
-| `decision_timestamp` | ISO 8601 string or epoch seconds | When the decision was **logged**. Not when review happened — that is the whole point of this project. |
+| `decision_timestamp` | ISO 8601 string or epoch seconds | When the decision was **logged**. Not when review happened. That is the whole point of this project. |
 | `approver` | string | Identity of record for the approval, if distinct from `reviewer_id`. |
 
 ## Function-level fields (the instrumentation)
@@ -35,12 +35,12 @@ Minimal profile: any one of the first three. Full profile: all of them.
 |---|---|---|
 | `time_on_item_s` | float, seconds | Active attention on the item: foreground focus, summed across visits. Not wall-clock time between open and close, and never derived from inter-decision gaps. If you cannot measure focus, log open-to-close per visit and say so. |
 | `evidence_opened` | integer | Count of evidence artifacts (source document, model rationale, diff, linked case) actually opened for this item. Define "artifact" once, in your own docs, and keep it fixed. |
-| `rationale_text` | string | The reviewer's written rationale, verbatim. Specificity is **computed downstream**, not logged — do not ask reviewers to self-rate. If text cannot leave your boundary, log `correction_specificity` (float 0–1) computed inside it and document the method. |
+| `rationale_text` | string | The reviewer's written rationale, verbatim. Specificity is **computed downstream**, not logged. Do not ask reviewers to self-rate. If text cannot leave your boundary, log `correction_specificity` (float 0–1) computed inside it and document the method. |
 | `correction_count` | integer | Discrete corrections applied to the AI output before disposition. Zero for unmodified accepts. |
 | `accepted_unmodified` | boolean | The AI output was used with no edits. Derivable from `correction_count` but worth logging explicitly, since it feeds dependency accumulation directly. |
 | `item_presented_timestamp` | ISO 8601 or epoch seconds | When the item was first shown to the reviewer. With `decision_timestamp` this bounds true latency; with `items_presented_count` it measures load. |
 | `items_presented_count` | integer | Items in the reviewer's queue at presentation time (or per session). Feeds validation load vs. volume. |
-| `item_is_golden` | boolean | This item was a seeded known-answer probe. The cheapest instrumentation in this table — one boolean — and the hardest signal to fake. Keep golden items indistinguishable from ordinary work, and keep the expected disposition out of the review-time log (join it back at analysis time by `item_id`). |
+| `item_is_golden` | boolean | This item was a seeded known-answer probe. The cheapest instrumentation in this table (one boolean) and the hardest signal to fake. Keep golden items indistinguishable from ordinary work, and keep the expected disposition out of the review-time log (join it back at analysis time by `item_id`). |
 
 ## What not to do with it
 
@@ -48,8 +48,8 @@ The same properties that make these fields good oversight signals make them
 tempting for individual surveillance, which would be both an ethical failure and
 a practical one: reviewers who are being individually scored on dwell will game
 dwell, and the signal dies. The signals are designed to be read at the cohort
-and system level — is scrutiny thinning, is load outpacing capacity, is
-dependence growing — on pseudonymized identifiers, with golden-task results
+and system level (is scrutiny thinning, is load outpacing capacity, is
+dependence growing) on pseudonymized identifiers, with golden-task results
 handled as calibration data, not performance data. If your deployment cannot
 hold that line, instrument the item stream only (`item_is_golden`) and leave
 behavioral capture out.

@@ -80,7 +80,7 @@ by how long anyone actually reviewed. The residue above 0.50 is deliberate: the
 generator lets a faint trace of engagement bleed into the logged gaps, because
 real trails are not perfectly silent either. The claim is not that a standard
 trail carries *zero* signal. It is that the signal is too weak to act on, and it
-stays that way unless a large share of the logged gap is real review time — which
+stays that way unless a large share of the logged gap is real review time, which
 is exactly what `sensitivity` quantifies and `estimate` bounds for your own log.
 
 ## See it one record at a time
@@ -152,16 +152,16 @@ shows what a capable log looks like). Field-name aliases are recognized, so
 `timestamp`, `dwell_time`, `corrections`, and similar map onto the canonical names.
 If `check` says your logging falls short and you want to fix it,
 [docs/instrumented-log-format.md](docs/instrumented-log-format.md) specifies
-exactly what to emit — field semantics, minimal vs. full profiles, and the
+exactly what to emit: field semantics, minimal vs. full profiles, and the
 privacy line the signals are designed to respect.
 
 `check` reads your schema, not your data, so it is a **necessary-condition test**.
 A missing field proves a signal is uncomputable from your log. A present field only
 makes it possible: a `dwell_time` column populated with garbage still passes.
 Crossing the threshold means your logging is *capable of asking* whether review
-functioned — the threshold is exactly one field that records reviewer behavior
-rather than the decision (`evidence_opened`, `time_on_item`, or
-`correction_specificity`) — not that it answers the question. And one field
+functioned, not that it answers the question. The threshold is exactly one field
+that records reviewer behavior rather than the decision (`evidence_opened`,
+`time_on_item`, or `correction_specificity`). And one field
 deserves a caveat: every schema has timestamps, and timestamps could in principle
 carry review time. `check` counts them as standard-trail fields because in typical
 queue systems the logged gap is dominated by everything except reviewing. If you
@@ -171,7 +171,7 @@ carry.
 ## Test the timing assumption on your own log
 
 The argument's most contestable step is the premise that logged inter-decision
-gaps contain almost no review time. `estimate` tests it against a real log — any
+gaps contain almost no review time. `estimate` tests it against a real log: any
 JSON list of events with a reviewer id and a decision timestamp:
 
 ```
@@ -179,12 +179,12 @@ python3 -m oversight_audit estimate mylog.json
 ```
 
 It decomposes each reviewer's inter-decision gaps into bursts (too short to be
-review — batched logging), breaks (too long — the reviewer walked away), and
+review, batched logging), breaks (too long, the reviewer walked away), and
 working-range gaps, then reports an **upper bound** on the share of logged gap
 time that could be review. Two honest asymmetries to keep in mind:
 
 - The bound can **exonerate** timestamps but never convict them. A log whose gaps
-  are dominated by bursts and breaks provably cannot carry much engagement — the
+  are dominated by bursts and breaks provably cannot carry much engagement. The
   premise holds and the non-identifiability argument applies with force. A log
   with a high bound only *might* carry engagement; whether reviewers actually
   spend the working gaps reviewing is unknowable without instrumenting dwell.
@@ -215,13 +215,13 @@ python3 -m oversight_audit sensitivity --bootstrap 400
 
 - **Decision disagreement** (0 → 0.6): standard-trail separability rises 0.62 →
   0.92 as engaged and procedural decisions diverge. The trail only sees engagement
-  once the decisions themselves show the failure — the regime where no tool is
+  once the decisions themselves show the failure, the regime where no tool is
   needed.
 - **Timestamp dwell weight** (0 → 1): standard-trail separability rises 0.62 →
-  0.94, and reaches 0.81 by a dwell weight of 0.25. This is the load-bearing
+  0.94, and reaches 0.81 by a dwell weight of 0.25. This is the decisive
   number: if even a quarter of the logged gap were real review time, timestamps
   would start to carry engagement. The argument therefore rests on that share
-  being near zero — an empirical premise `estimate` lets you test on your own
+  being near zero, an empirical premise `estimate` lets you test on your own
   log rather than accept on faith.
 
 At the baseline (0.00 on both axes, the demo's configuration): standard 0.62
@@ -255,18 +255,18 @@ into existing workflows.
   Unlike the others, this instruments the item stream rather than the reviewer: mix
   items with a known correct disposition into the queue, mark them in the log, and
   the ordinary decision field becomes an engagement measure. It is also the
-  cheapest to add — one boolean column — and the demo already shows it working
+  cheapest to add (one boolean column) and the demo already shows it working
   (the seeded-error catch line, 0.83).
 
 A warning that belongs next to the agenda: once these signals are monitored, they
 become targets. Dwell can be inflated by leaving the item open. Evidence-opens can
 be clicked without reading. Rationale specificity can be padded with generated
 text. Any calibrated instrument built on these signals has to treat gaming
-resistance as a design criterion from the start — preferring signals that are
+resistance as a design criterion from the start, preferring signals that are
 costly to fake, and cross-checking signals against each other rather than trusting
 any one. Golden tasks are the benchmark here: passing them requires doing the
 review, so their main gaming vector is not faking the signal but spotting the
-golden items and engaging only on those — which is why they must be
+golden items and engaging only on those, which is why they must be
 indistinguishable from ordinary work. A signal that is cheap to fake measures
 compliance with the metric, which is the same failure this tool exists to name.
 
@@ -278,7 +278,7 @@ context switching, and batching, not by how long anyone actually reviewed, so it
 separates engaged from procedural reviewers only weakly (about 0.6 above), and it
 collapses further under load, exactly when oversight matters most. A timestamp
 records when a decision was logged, not how long review took. If you suspect your
-own system's timestamps are better than that, don't argue — run
+own system's timestamps are better than that, don't argue. Run
 `estimate` on your log and see what they could carry at most.
 
 ## How the demo works

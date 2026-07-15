@@ -39,7 +39,7 @@ The scoping invites an objection worth answering head-on: if the disengaged revi
 reaches the same decisions as the engaged one, what harm did disengagement do? The answer
 is that oversight is not purchased for the items where it makes no difference. It is
 purchased for the rare item where an engaged reviewer would have caught what a procedural
-one waves through — the tail. On base rates the two reviewers agree, which is exactly why
+one waves through: the tail. On base rates the two reviewers agree, which is exactly why
 agreement statistics cannot certify anything: they measure the items where engagement was
 not needed. What the organization is paying for is the counterfactual catch rate on the
 items where it is needed, and a reviewer who has stopped looking has the same expected
@@ -91,7 +91,7 @@ not claim the standard trail carries zero signal, and the generator does not pro
 trail that carries zero signal. It deliberately lets a faint trace of engagement bleed
 into the logged inter-decision gaps (engaged reviewers average a few seconds longer
 between logged decisions), because a synthetic trail that leaked nothing would be a
-strawman — real trails are noisy, not silent. The claim is that the leak is too weak to
+strawman. Real trails are noisy, not silent. The claim is that the leak is too weak to
 act on: at 0.62, ranking reviewers by throughput misclassifies too often to support any
 intervention, and the residue shrinks further under load. The precise claim is therefore
 "non-identifiable in practice from S in the agreement regime," where the demo's 0.62
@@ -125,15 +125,15 @@ reader can weigh that number instead of taking the assumption on faith.
 The number is not comfortable, and it should be stated rather than softened: in the sweep,
 standard-trail separability reaches 0.81 at a dwell weight of just 0.25 (seed 20260709).
 If a quarter of the logged gap were real review time, timestamps would begin to carry
-engagement. The assumption is therefore strong — near-zero dwell share — and whether it
+engagement. The assumption is therefore strong (near-zero dwell share), and whether it
 holds is a property of the review system, not of the argument.
 
 Where is it plausible? The assumption fits high-volume queue work, where decisions are
 batched, items wait in queues, and reviewers context-switch: SOC alert triage, content
 moderation, AI-output review embedded in ticketing systems, code review done in gaps
 between other work. There, the logged gap is mostly everything except reviewing. The
-assumption fits poorly where review is deliberative, single-case, and session-structured —
-clinical chart review, IRB and grant review, judicial and parole decisions — where a
+assumption fits poorly where review is deliberative, single-case, and session-structured, such as
+clinical chart review, IRB and grant review, judicial and parole decisions, where a
 reviewer opens one case, works it, and logs it, so the gap approximates dwell. For systems
 of that second kind the standard trail may genuinely carry engagement, the
 non-identifiability claim weakens, and this tool's argument should not be recruited to
@@ -143,7 +143,7 @@ session-structured, and what decides the question for any one system is the comp
 of its logged gaps, not its industry. Readers should place their own system on that
 spectrum, and the `estimate` command exists to adjudicate it: it decomposes a real log's inter-decision gaps into bursts,
 breaks, and working-range time and reports an upper bound on the dwell share. The bound
-is asymmetric by design — burst- and break-dominated gaps can prove the assumption holds,
+is asymmetric by design: burst- and break-dominated gaps can prove the assumption holds,
 but a high bound cannot prove it fails, since only instrumented dwell can show whether
 working-range gaps contain reviewing.
 
